@@ -29,19 +29,20 @@ class Stack:
             self.tos = self.tos - 1					# if it is empty then subtracts 1 from tos
             return self.items.pop() 				# uses the pop function to return the item at top of the list 
     
-    def peek(self):
-        return self.items[len(self.items)-1]
+    def peek(self):                                 # Created a new function called peek
+        return self.items[len(self.items) - 1]      # Returns the last item in the list WITHOUT removing it
 
-    def getSize(self):
-        return len(self.items)
+    def getSize(self):                              # New function called getSize
+        return len(self.items)                      # Returns the length of the of the array
 
 
-class Queue:
+class Queue:   
+						    # Created a new class
+	def __init__(self, maxsize):                # Created a new constructor class
+        self.maxsize = maxsize                      # initalizes the maxsize as a parameter
+        self.stack1 = Stack(maxsize)                # first stack being creates and is giving all functions from stack class
+        self.stack2 = Stack(maxsize)                # second stack being created and is given all functions from the stack class
 
-	def __init__(self,maxsize):
-		self.maxsize = maxsize
-		self.stack1 = Stack(maxsize)
-		self.stack2 = Stack(maxsize)
 
 	def Enqueue(self,key):
 		if len(self.stack1.items) != self.maxsize:
@@ -49,11 +50,9 @@ class Queue:
 
 	def Dequeue(self):
 		if self.stack1.tos != -1:
-
 			for i in range(self.maxsize):
 				self.stack2.push(self.stack1.pop())
 			temp = self.stack2.pop()
-
 			for i in range(self.maxsize):
 				self.stack1.push(self.stack2.pop())
 			return temp
