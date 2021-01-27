@@ -40,43 +40,54 @@ class Stack:
 class Queue:
 
     def __init__(self,maxsize):
-        self.key = []
+        
         self.maxsize = maxsize
         self.tos = -1 
-        self.stack1 = Stack(maxsize)
-        self.stack2 = Stack(maxsize)
+        self.stack1 = Stack(self.maxsize)
+        self.stack2 = Stack(self.maxsize)
 
-    def Enqueue(self,key):      # this is where we will have to loop through and transfer to one stack from anoither 
+
+    def Enqueue(self,key):
+     # this is where we will have to loop through and transfer to one stack from anoither 
         #First we much check of this queue is full or empty or if first element 
-         if len(self.key) != self.maxsize:
-            self.key.append(key)
-            self.tos = self.tos + 1 
-            
+        if len(self.stack1.items) != self.maxsize:
+            self.stack1.push(key)
+            self.tos = self.tos + 1
+            #print(self.stack1.peek())
 
 
     def Dequeue(self):
-        if self.tos != -1:
+        if self.tos != -1:  #this checks if the Queue/ Stack is empty or not 
             for i in range(self.maxsize):
-                temp = self.stack1.pop()
-                self.stack2.push(temp)
-                self.stack2.pop()
+                print(i)
+                self.stack2.push(self.stack1.pop())
+            self.stack2.pop()
             
-        
+    def whatsSize(self):
+        return self.maxsize
 
 
+            
     
 
 
 Q = Queue(5)
+
 Q.Enqueue(1)
 Q.Enqueue(2)
 Q.Enqueue(3)
 Q.Enqueue(4)
 
+#S = Stack(3)
+#S.push(1)
+#S.push(2)
+#S.push(3)
+#p = S.peek()
+#print(p)
+
+#print(v)
+#print(S.pop)
 
 
-
-
-for i in range(5):
-  print(Q.Dequeue())
+(Q.Dequeue())
 
